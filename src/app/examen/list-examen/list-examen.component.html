@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Liste des Examens</h4>
+    <div class="card-header-form">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="term" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table  id="customers" class="table table-striped">
+        <tr>
+                  <th class="text-center">Jour</th>
+                  <th>Date</th>
+                  <th>Heure</th>
+                  <th>Durée</th>
+                  <th>Type</th>
+                  <th>Semestre</th>
+                  <th>Enseignant</th>
+                  <th>Classe</th>
+                  <th>Groupe</th>
+                  <th>Module</th>
+                  <th>Salle</th>
+                  <th>Action</th>
+                </tr>
+                <tr *ngFor="let e of exemens | filter:term">
+                  <td class="text-center" width="90"> {{ getDayName(e.dateEx) }}</td>
+                  <td class="text-center" width="90">{{e.dateEx }}</td>
+                  <td class="text-truncate" width="90">{{e.heureEx}}</td>
+                  <td class="text-truncate" width="90">{{e.dureeEx}}</td>
+                  <td class="text-truncate" width="90">{{e.typeEx}}</td>
+                  <td class="text-truncate" width="90">{{e.semestre}}</td>
+
+
+                  <td>{{e.enseignant.nom}}  {{e.enseignant.prenom}} </td>
+                  <td class="text-truncate">{{e.classe.libelleCL}}</td>
+                  <td class="text-truncate">{{e.groupe}}</td>
+                  <td class="align-middle">{{e.espModule.designation}}</td>
+                  <td class="align-middle">Salle {{e.salle.codeSalle}} </td>
+
+                  <td width="120">
+                    <button class="btn btn-warning" [routerLink]="['../edit', e.idExamen]"  ><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger"  (click)="suppExamen(e.idExamen)"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+      </table>
+    </div>
+  </div>
+</div>

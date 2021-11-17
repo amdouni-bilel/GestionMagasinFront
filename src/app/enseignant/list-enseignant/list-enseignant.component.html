@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+        <h4>Liste des Enseignants</h4>
+        <div class="card-header-form">
+              <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="term" placeholder="Search">
+                <div class="input-group-btn">
+                  <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+          </div>
+    </div>
+      <div class="card-body">
+          <div class="table-responsive">
+              <table  id="customers" class="table table-striped">
+                <tr> 
+                  <th class="text-center">N°</th>
+                  <th>Enseignant</th>
+                  <th>Grade</th>
+                  <th>Téléphone</th>  
+                  <th>E-mail</th>    
+                  <th>Département</th>   
+                  <th>Action</th>
+                </tr>
+                
+                <tr *ngFor="let e of enseignants | filter:term"> 
+                  <td class="text-center" width="70">{{e.idEns }}</td>
+                  <td>{{e.nom}}  {{e.prenom}} </td>
+                  <td class="text-truncate">{{e.typeEns}}</td>
+                  <td class="align-middle">{{e.tel}}</td> 
+                  <td class="align-middle">{{e.mail}}</td> 
+                  <td class="align-middle">{{e.espdept.libelle_dept}}</td> 
+                  <td width="120">
+                    <button class="btn btn-warning" [routerLink]="['../edit', e.idEns]"  ><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger"  (click)="suppEnseignant(e.idEns)"><i class="fas fa-trash"></i></button>
+                  </td> 
+                </tr> 
+              </table>
+            </div>
+      </div>
+    </div>

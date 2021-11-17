@@ -1,0 +1,37 @@
+<section class="section">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+          <div class="card card-primary"> <br>
+              <p><img alt="image" src="assets/img/esprit.png"  width="250" /></p><hr>
+              <h4>Connexion</h4>
+             
+            <div class="card-body">
+              <form [formGroup]="logForm" (ngSubmit)="verifUser()" >
+                <div class="form-group">
+                  <label for="email">E-mail :</label>
+                  <input id="email" type="text" class="form-control" name="mail" formControlName="mail" >
+                  <div *ngIf="mail.touched && mail.invalid">
+                      <small *ngIf="mail.errors.required" class="text-danger">E-mail est Obilgatoire<br></small>
+                      <small *ngIf="mail.errors.email" class="text-danger">E-mail invalide<br></small>
+                  </div>
+                </div>
+                <div class="form-group"> 
+                  <label for="password" class="control-label">Mot de passe :</label>  
+                  <input id="password" type="password" class="form-control" name="password" formControlName="password" >
+                  <div *ngIf="password.touched && password.invalid">
+                      <small *ngIf="password.errors.required" class="text-danger">Mot de passe est Obilgatoire<br></small>
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <button type="submit" [disabled]="logForm.invalid" class="btn btn-primary btn-lg btn-block" >
+                    Se Connecter
+                  </button>
+                </div>
+              </form> 
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </section>

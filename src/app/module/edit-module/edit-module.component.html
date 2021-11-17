@@ -1,0 +1,118 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Modification d'un module</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="editM" (ngSubmit)="save()">
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Code Module :</label>
+            <input type="text" class="form-control" disabled name="code" formControlName="code">
+            <div *ngIf="code.touched && designation.invalid">
+              <small *ngIf="code.errors.required" class="text-danger">Code de module est Obligatoire<br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Designation :</label>
+            <input type="text" class="form-control" name="designation" formControlName="designation">
+            <div *ngIf="designation.touched && designation.invalid">
+              <small *ngIf="designation.errors.required" class="text-danger">designation est Obligatoire<br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Nombres d'Heures :</label>
+            <input type="text" class="form-control" name="nbrHeures" formControlName="nbrHeures">
+            <div *ngIf="nbrHeures.touched && nbrHeures.invalid">
+              <small *ngIf="nbrHeures.errors.required" class="text-danger">Nombres d'heures est Obligatoire<br></small>
+              <small *ngIf="nbrHeures.errors.pattern" class="text-danger">Nombres d'heures invalide<br></small>
+           </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Coefficient :</label>
+            <input type="text" class="form-control" name="coefficient" formControlName="coefficient">
+            <div *ngIf="coefficient.touched && coefficient.invalid">
+              <small *ngIf="coefficient.errors.required" class="text-danger">Coefficient est Obligatoire<br></small>
+              <small *ngIf="coefficient.errors.pattern" class="text-danger">Coefficient invalide<br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Type Epreuve :</label>
+            <input type="text" class="form-control" name="typeEpreuve" formControlName="typeEpreuve">
+            <div *ngIf="typeEpreuve.touched && typeEpreuve.invalid">
+              <small *ngIf="typeEpreuve.errors.required" class="text-danger">typeEpreuve est Obligatoire<br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Semestre</label>
+            <select class="form-control" name="semestre" formControlName="semestre">
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+            </select>
+            <div *ngIf="semestre.touched && semestre.invalid">
+              <small *ngIf="semestre.errors.required" class="text-danger">semestre est Obligatoire<br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Periode :</label>
+            <select class="form-control" name="periode" formControlName="periode">
+              <option value="P1">P1</option>
+              <option value="P2">P2</option>
+            </select>
+            <div *ngIf="periode.touched && periode.invalid">
+              <small *ngIf="periode.errors.required" class="text-danger">designation est Obligatoire<br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Classe :</label>
+            <select class="form-control" name="classe" formControlName="classe"> 
+              <option *ngFor="let c of classes" value="{{c.codeCL}}">{{c.libelleCL}}</option>
+            </select>
+            <div *ngIf="classe.touched && classe.invalid">
+              <small *ngIf="classe.errors.required" class="text-danger">Veuillez choisir la classe <br></small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <div class="form-group">
+            <label>Enseignant :</label>
+            <select class="form-control" name="enseignant" formControlName="enseignant"> 
+              <option *ngFor="let c of enseignants" value="{{c.idEns}}">{{c.nom}}{{c.prenom}}</option>
+            </select>
+            <div *ngIf="enseignant.touched && enseignant.invalid">
+              <small *ngIf="enseignant.errors.required" class="text-danger">Veuillez choisir la enseignant <br></small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-footer text-right">
+        <button class="btn btn-primary mr-1" [disabled]="editM.invalid" type="submit">Enregistrer</button>
+      </div>
+
+    </form>
+  </div>
+</div>

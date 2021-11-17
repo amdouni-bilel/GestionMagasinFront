@@ -1,0 +1,110 @@
+<div class="card">
+    <div class="card-header">
+        <h4>Liste des Salles   </h4>
+        <div class="card-header-form">
+            <button class="btn btn-dark btn-sm" (click)="openModal(addSalleModal, null)" >Ajouter une Salle</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table  id="customers" class="table table-striped">
+                <tr>
+                    <th class="text-center">Code Salle</th>
+                    <th>Capacité</th>
+                    <th>Site</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr *ngFor="let s of salles">
+                    <td class="text-center" width="70">{{ s.codeSalle }}</td>
+                    <td width="250">{{ s.capacite }}</td>
+                    <td width="400">{{ s.site }}</td>
+                    <td width="100">
+                        <button type="button" class="btn btn-icon btn-sm btn-warning"
+                            (click)="openModal(editSalleModal, s)"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm btn-danger"
+                            (click)="supp(s.codeSalle)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #editSalleModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="editProfileLabel">Modification d'une Salle</h5>  
+    </div>
+    <div class="modal-body">
+        <form class="" [formGroup]="formSal" (ngSubmit)="edit()">
+            <div class="form-group">
+                <label>Code de Salle : </label>
+                <input type="text" class="form-control" disabled name="code" formControlName="code">
+                <div *ngIf="code.touched && code.invalid">
+                    <small *ngIf="code.errors.required" class="text-danger">Code de salle est Obligatoire<br></small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Capacité : </label>
+                <input type="text" class="form-control" name="capacite" formControlName="capacite">
+                <div *ngIf="capacite.touched && capacite.invalid">
+                    <small *ngIf="capacite.errors.required" class="text-danger">Veuillez saisir La Capacité <br></small>
+                    <small *ngIf="capacite.errors.pattern" class="text-danger">Capacité invalide<br></small>
+                    <small *ngIf="capacite.errors.minlength" class="text-danger">La Capacité doit contenir au moins 2 chiffres</small>
+                    <small *ngIf="capacite.errors.maxlength" class="text-danger">La Capacité doit contenir au max 3 chiffres </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Site : </label>
+                <input type="text" class="form-control" name="site" formControlName="site">
+                <div *ngIf="site.touched && site.invalid">
+                    <small *ngIf="site.errors.required" class="text-danger">Site de salle est Obligatoire<br></small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" (click)="modal.dismiss()">Fermer</button>
+                <button type="submit" class="btn btn-primary" [disabled]="formSal.invalid">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #addSalleModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="editProfileLabel">Ajout d'une Salle</h5>  
+    </div>
+    <div class="modal-body">
+        <form class="" [formGroup]="formSal" (ngSubmit)="add()">
+            <div class="form-group">
+                <label>Code de Salle : </label>
+                <input type="text" class="form-control" name="code" formControlName="code">
+                <div *ngIf="code.touched && code.invalid">
+                    <small *ngIf="code.errors.required" class="text-danger">Code de salle est Obligatoire<br></small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Capacité : </label>
+                <input type="text" class="form-control" name="capacite" formControlName="capacite">
+                <div *ngIf="capacite.touched && capacite.invalid">
+                    <small *ngIf="capacite.errors.required" class="text-danger">Veuillez saisir La Capacité <br></small>
+                    <small *ngIf="capacite.errors.pattern" class="text-danger">Capacité invalide<br></small>
+                    <small *ngIf="capacite.errors.minlength" class="text-danger">La Capacité doit contenir au moins 2 chiffres</small>
+                    <small *ngIf="capacite.errors.maxlength" class="text-danger">La Capacité doit contenir au max 3 chiffres </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Site : </label>
+                <input type="text" class="form-control" name="site" formControlName="site">
+                <div *ngIf="site.touched && site.invalid">
+                    <small *ngIf="site.errors.required" class="text-danger">Site de salle est Obligatoire<br></small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" (click)="modal.dismiss()">Fermer</button>
+                <button type="submit" class="btn btn-primary" [disabled]="formSal.invalid">Valider</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

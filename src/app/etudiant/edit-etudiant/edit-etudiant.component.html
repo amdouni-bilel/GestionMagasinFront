@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Modification d'un Etudiant</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addETD" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Code Etudiant :</label>
+        <input type="text" class="form-control" disabled name="code" formControlName="code">
+        <div *ngIf="code.touched && code.invalid">
+          <small *ngIf="code.errors.required" class="text-danger">Code  est Obligatoire<br></small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Cin :</label>
+        <input type="text" class="form-control" name="cin" formControlName="cin">
+        <div *ngIf="cin.touched && cin.invalid">
+          <small *ngIf="cin.errors.required" class="text-danger">Veuillez saisir N° CIN <br></small>
+          <small *ngIf="cin.errors.pattern" class="text-danger">N° CIN invalide<br></small>
+          <small *ngIf="cin.errors.minlength" class="text-danger">Le CIN doit contenir au moins 8 chiffres</small>
+          <small *ngIf="cin.errors.maxlength" class="text-danger">Le CIN doit contenir au max 8 chiffres </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nom :</label>
+        <input type="text" class="form-control" name="nom" formControlName="nom">
+        <div *ngIf="nom.touched && nom.invalid">
+          <small *ngIf="nom.errors.required" class="text-danger">Nom  est Obligatoire<br></small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Prénom :</label>
+        <input type="text" class="form-control" name="prenom" formControlName="prenom">
+        <div *ngIf="prenom.touched && prenom.invalid">
+          <small *ngIf="prenom.errors.required" class="text-danger">Prénom  est Obligatoire<br></small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Mail Etudiant :</label>
+        <input type="text" class="form-control" name="mailEtud" formControlName="mailEtud">
+        <div *ngIf="mailEtud.touched && mailEtud.invalid">
+          <small *ngIf="mailEtud.errors.required" class="text-danger">Mail  est Obligatoire<br></small>
+          <small *ngIf="mailEtud.errors.email" class="text-danger">E-mail invalide<br></small>
+        </div> 
+      </div>
+
+      <div class="form-group">
+        <label>Classe :</label>
+        <select class="form-control" name="classe" formControlName="classe">
+          <option value="">Choisir Classe</option>
+          <option *ngFor="let c of classes" value="{{c.codeCL}}">{{c.libelleCL}}</option>
+        </select>
+        <div *ngIf="classe.touched && classe.invalid">
+          <small *ngIf="classe.errors.required" class="text-danger">Veuillez choisir la classe  <br></small>
+        </div>
+      </div>
+
+      <div class="card-footer text-right">
+        <button class="btn btn-primary mr-1" [disabled]="addETD.invalid" type="submit">Enregistrer</button>
+      </div>
+
+    </form>
+  </div>
+</div>

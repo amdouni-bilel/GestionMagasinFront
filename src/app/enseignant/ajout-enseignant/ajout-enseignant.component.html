@@ -1,0 +1,115 @@
+<div class="card">
+    <div class="card-header">
+        <h4>Ajout d'un Enseignant</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="addENS" (ngSubmit)="save()">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label>Code Enseignant :</label>
+                        <input type="text" class="form-control" name="code" formControlName="code">
+                        <div *ngIf="code.touched && code.invalid">
+                            <small *ngIf="code.errors.required" class="text-danger">Code est Obligatoire<br></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label>Nom :</label>
+                        <input type="text" class="form-control" name="nom" formControlName="nom">
+                        <div *ngIf="nom.touched && nom.invalid">
+                            <small *ngIf="nom.errors.required" class="text-danger">Nom est Obligatoire<br></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label>Prénom :</label>
+                        <input type="text" class="form-control" name="prenom" formControlName="prenom">
+                        <div *ngIf="prenom.touched && prenom.invalid">
+                            <small *ngIf="prenom.errors.required" class="text-danger">Prénom est Obligatoire<br></small>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label>Téléphone :</label>
+                        <input type="text" class="form-control" name="tel" formControlName="tel">
+                        <div *ngIf="tel.touched && tel.invalid">
+                            <small *ngIf="tel.errors.required" class="text-danger">Veuillez saisir Téléphone
+                                <br></small>
+                            <small *ngIf="tel.errors.pattern" class="text-danger">Téléphone invalide<br></small>
+                            <small *ngIf="tel.errors.minlength" class="text-danger">Le Téléphone doit contenir au moins
+                                8 chiffres</small>
+                            <small *ngIf="tel.errors.maxlength" class="text-danger">Le Téléphone doit contenir au max 8
+                                chiffres </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label>E-mail :</label>
+                        <input type="text" class="form-control" name="mail" formControlName="mail">
+                        <div *ngIf="mail.touched && mail.invalid">
+                            <small *ngIf="mail.errors.required" class="text-danger">E-mail est Obligatoire <br></small>
+                            <small *ngIf="mail.errors.email" class="text-danger">E-mail invalide<br></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label>Sexe :</label>
+                        <select class="form-control" name="sexe" formControlName="sexe">
+                            <option value="Homme">Homme</option>
+                            <option value="Femme">Femme</option>
+                        </select>
+                        <div *ngIf="sexe.touched && sexe.invalid">
+                            <small *ngIf="sexe.errors.required" class="text-danger">Sexe est Obligatoire<br></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="form-group">
+                        <label>Grade Enseignant :</label>
+                        <select class="form-control" name="type" formControlName="type">
+                            <option value="">Choisir Grade</option>
+                            <option value="Assistant">Assistant</option>
+                            <option value="Maître assistant">Maître assistant</option>
+                            <option value="Maître de conférences">Maître de conférences</option>
+                        </select>
+                        <div *ngIf="type.touched && type.invalid">
+                            <small *ngIf="type.errors.required" class="text-danger">Type est Obligatoire<br></small>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <div class="form-group">
+                        <label>Département :</label>
+                        <select class="form-control" name="departement" formControlName="departement">
+                            <option *ngFor="let d of depts" value="{{d.code_dept}}">{{d.libelle_dept}}</option> 
+                        </select>
+                        <div *ngIf="departement.touched && departement.invalid">
+                            <small *ngIf="departement.errors.required" class="text-danger">Département est
+                                Obligatoire<br></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer text-right">
+                <button class="btn btn-primary mr-1" [disabled]="addENS.invalid" type="submit">Valider</button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Ajout d'un Etudiant</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addETD" (ngSubmit)="save()">
+      <div class="form-group">
+        <label>Code Etudiant :</label>
+        <input type="text" class="form-control" name="code" formControlName="code">
+        <div *ngIf="code.touched && code.invalid">
+          <small *ngIf="code.errors.required" class="text-danger">Code  est Obligatoire<br></small>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>N° CIN :</label>
+        <input type="text" class="form-control" name="cin" formControlName="cin">
+        <div *ngIf="cin.touched && cin.invalid">
+          <small *ngIf="cin.errors.required" class="text-danger">Veuillez saisir N° CIN <br></small>
+          <small *ngIf="cin.errors.pattern" class="text-danger">N° CIN invalide<br></small>
+          <small *ngIf="cin.errors.minlength" class="text-danger">Le CIN doit contenir au moins 8 chiffres</small>
+          <small *ngIf="cin.errors.maxlength" class="text-danger">Le CIN doit contenir au max 8 chiffres </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Nom :</label>
+        <input type="text" class="form-control" name="nom" formControlName="nom">
+        <div *ngIf="nom.touched && nom.invalid">
+          <small *ngIf="nom.errors.required" class="text-danger">Nom  est Obligatoire<br></small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Prénom :</label>
+        <input type="text" class="form-control" name="prenom" formControlName="prenom">
+        <div *ngIf="prenom.touched && prenom.invalid">
+          <small *ngIf="prenom.errors.required" class="text-danger">Prénom  est Obligatoire<br></small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Mail Etudiant :</label>
+        <input type="text" class="form-control" name="mailEtud" formControlName="mailEtud">
+        <div *ngIf="mailEtud.touched && mailEtud.invalid">
+          <small *ngIf="mailEtud.errors.required" class="text-danger">Mail  est Obligatoire<br></small>
+          <small *ngIf="mailEtud.errors.email" class="text-danger">E-mail invalide<br></small>
+        </div> 
+      </div>
+      <div class="form-group">
+        <label>Classe :</label>
+        <select class="form-control" name="classe" formControlName="classe">
+          <option value="">Choisir Classe</option>
+          <option *ngFor="let c of classes" value="{{c.codeCL}}">{{c.libelleCL}}</option>
+        </select>
+        <div *ngIf="classe.touched && classe.invalid">
+          <small *ngIf="classe.errors.required" class="text-danger">Veuillez choisir la classe  <br></small>
+        </div>
+      </div>
+
+      <div class="card-footer text-right">
+        <button class="btn btn-primary mr-1" [disabled]="addETD.invalid" type="submit">Valider</button>
+        <button class="btn btn-secondary" type="reset">Reset</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!--         <div class="form-group">
+           <label>Sexe :</label>
+           <button class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</button> &lt;!&ndash; bouton &ndash;&gt;
+           <div class="dropdown-menu">
+             <a class="dropdown-item" href="#">Service 1</a>
+             <a class="dropdown-item" href="#">Autre service</a>
+           </div>
+         </div>-->
+<!--
+<div class="container" style="margin-top : 50px;">
+  <div class="dropdown">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+     Sexe<span class="caret"> </span></button>
+
+    <ul class="dropdown-menu">
+      <li><a href="#">Action</a></li>
+      <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+      <li><a href="#">Something else here</a></li>
+    </ul>
+  </div>
+
+</div>
+-->
+<!--
+  <div mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="1">Option 1</mat-radio-button>
+    <mat-radio-button value="2">Option 2</mat-radio-button>
+  </div>-->

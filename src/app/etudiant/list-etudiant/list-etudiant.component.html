@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Liste des Etudiants</h4>
+    <div class="card-header-form">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="term" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table  id="customers" class="table table-striped">
+        <tr>
+          <th>Identifiant</th>
+          <th>N°CIN</th>
+          <th>Etudiant</th>
+          <th>Mail</th>
+          <th>Classe</th>
+          <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let e of etudiants | filter:term">
+          <td>{{e.id}} </td>
+          <td class="text-truncate">{{e.cin}}</td>
+          <td>{{e.nom}}  {{e.prenom}} </td>
+          <td>{{e.mailEtud}} </td>
+          <td class="align-middle">{{e.classe.libelleCL}}</td>
+          <td width="120">
+            <button class="btn btn-warning" [routerLink]="['../edit', e.id]"  ><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger"  (click)="suppStudent(e.id)"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

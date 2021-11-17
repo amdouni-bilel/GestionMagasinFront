@@ -1,0 +1,152 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Modification d'une épreuve</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="editEX" (ngSubmit)="save()">
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label>Classe :</label>
+          <select class="form-control" name="classe" formControlName="classe"
+            (change)="onChangeClasse($event.target.value)">
+            <option *ngFor="let c of classes" value="{{c.codeCL}}">{{c.libelleCL}}</option>
+          </select>
+          <div *ngIf="classe.touched && classe.invalid">
+            <small *ngIf="classe.errors.required" class="text-danger">Veuillez Choisir la Classe<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Module :</label>
+          <select class="form-control" name="module" formControlName="module"
+            (change)="onChangeModule($event.target.value)">
+            <option value="">Choisir module</option>
+            <option *ngFor="let m of modulsssss" value="{{m.codeModule}}">{{m.designation}}</option>
+          </select>
+          <div *ngIf="module.touched && module.invalid">
+            <small *ngIf="module.errors.required" class="text-danger">Veuillez Choisir Module<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Enseignant :</label>
+          <input type="text" class="form-control" disabled
+            value="{{enseignantOfModule.nom}} {{enseignantOfModule.prenom}}" name="enseignant"
+            formControlName="enseignant">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Date Examen :</label>
+          <input type="date" class="form-control" onkeydown="return false" [min]="minDate | date:'yyyy-MM-dd'"
+            name="dateEX" formControlName="dateEX">
+          <div *ngIf="dateEX.touched && dateEX.invalid">
+            <small *ngIf="dateEX.errors.required" class="text-danger">Date de l'examen est Obligatoire<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Heure Examen :</label> 
+          <input type="time" class="form-control"    name="heureEX" formControlName="heureEX"> 
+          <div *ngIf="heureEX.touched && heureEX.invalid">
+            <small *ngIf="heureEX.errors.required" class="text-danger">Heure de l'examen est Obligatoire<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Durée Examen :</label>
+          <input type="text" class="form-control" name="dureeEX" formControlName="dureeEX">
+          <div *ngIf="dureeEX.touched && dureeEX.invalid">
+            <small *ngIf="dureeEX.errors.required" class="text-danger">Durée   est Obligatoire<br></small>
+            <small *ngIf="dureeEX.errors.pattern" class="text-danger">Durée invalide<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>DSEX :</label>
+          <select class="form-control" name="dsex" formControlName="dsex">
+            <option value="Examen">Examen</option>
+            <option value="DS">DS</option>
+          </select>
+          <div *ngIf="dsex.touched && dsex.invalid">
+            <small *ngIf="dsex.errors.required" class="text-danger">Veuillez Choisir DSEX <br></small>
+          </div>
+        </div>
+
+
+
+        <div class="form-group col-md-4">
+          <label>Type Examen :</label>
+          <select class="form-control" name="typeEX"  formControlName="typeEX">
+            <option *ngFor="let tp of modulsssss" value="{{tp.typeEpreuve}}">{{tp.typeEpreuve}}</option>
+          </select>
+          <div *ngIf="typeEX.touched && typeEX.invalid">
+            <small *ngIf="typeEX.errors.required" class="text-danger">Type d'exmen est Obligatoire<br></small>
+          </div>
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label>Semestre :</label> 
+          <select class="form-control" name="semestre"  formControlName="semestre">
+              <option *ngFor="let ss of modulsssss" value="{{ss.semestre}}">{{ss.semestre}}</option>
+          </select>
+          <div *ngIf="semestre.touched && semestre.invalid">
+            <small *ngIf="semestre.errors.required" class="text-danger">Semestre est Obligatoire<br></small>
+          </div>
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label>Session :</label>
+          <select class="form-control" name="session" formControlName="session">
+            <option value="PRINCIPAL">PRINCIPAL</option>
+            <option value="RATTRAPAGE">RATTRAPAGE</option>
+          </select>
+          <div *ngIf="session.touched && session.invalid">
+            <small *ngIf="session.errors.required" class="text-danger">Session est Obligatoire<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Groupe :</label>
+          <select class="form-control" name="groupe" formControlName="groupe">
+            <option value="G1">G1</option>
+            <option value="G2">G2</option>
+            <option value="G1G2">G1G2</option>
+          </select>
+          <div *ngIf="groupe.touched && groupe.invalid">
+            <small *ngIf="groupe.errors.required" class="text-danger">Veuillez Choisir le Groupe<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Salle :</label>
+          <select class="form-control" name="salle" formControlName="salle">
+            <option *ngFor="let s of salles" value="{{s.codeSalle}}">{{s.codeSalle}}</option>
+          </select>
+          <div *ngIf="salle.touched && salle.invalid">
+            <small *ngIf="salle.errors.required" class="text-danger">Veuillez Choisir Salle<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Surveillant :</label>
+          <select class="form-control" name="surveillant" formControlName="surveillant">
+            <option *ngFor="let ss of surveillants" value="{{ss.idEns}}">{{ss.nom}} {{ss.prenom}}</option>
+          </select>
+          <div *ngIf="surveillant.touched && surveillant.invalid">
+            <small *ngIf="surveillant.errors.required" class="text-danger">Veuillez Choisir l'Enseignant<br></small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer text-right">
+        <span class="btn btn-dark" (click)="checkDisponibilite()">Verif Disponibilite</span>
+        <button class="btn btn-primary mr-1" [disabled]="editEX.invalid" type="submit">Enregistrer</button>
+      </div>
+
+    </form>
+  </div>
+</div>
